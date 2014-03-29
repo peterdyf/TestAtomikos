@@ -1,4 +1,4 @@
-package com.peter.atomikos.mixed;
+package com.peter.atomikos;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -7,24 +7,24 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "Order")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class OrderInMixed {
+public class Order {
 
 	@XmlElement(name = "Id", required = true)
-	private long id;
+	private int id;
 
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	public OrderInMixed(long id) {
+	public Order(int id) {
 		this.id = id;
 	}
 
-	public OrderInMixed() {
+	public Order() {
 	}
 	
 	

@@ -19,12 +19,27 @@ public class HibernateTest {
 	HibernateService service;
 
 	@Test
-	public void test1() throws Exception {
+	public void testNormal() throws Exception {
 		int id1 = new Random().nextInt(1000);
 		int id2 = new Random().nextInt(1000);
 
 		try {
 			service.doSthInDB1And2InOneTransaction(id1, id2);
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		}
+		
+		assertEquals(id1, service.searchInDB2(id1).getId());
+		assertEquals(id2, service.searchInDB2(id2).getId());
+	}
+	
+	@Test
+	public void testException() throws Exception {
+		int id1 = new Random().nextInt(1000);
+		int id2 = new Random().nextInt(1000);
+
+		try {
+			service.doSthInDB1And2InOneTransactionWithException(id1, id2);
 		} catch (RuntimeException e) {
 			e.printStackTrace();
 		}

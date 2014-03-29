@@ -18,7 +18,17 @@ public class HibernateService {
 	@Transactional(rollbackFor=Exception.class)
 	public void doSthInDB1And2InOneTransaction(int id1,int id2) throws Exception{
 		db1.doSql(id1);
-		db2.doSql(id2);	//will throw an exception to roll back last line result in another data source i.e. db1 
+		db2.doSql(id2);	 
+	}
+	
+	@Transactional(rollbackFor=Exception.class)
+	public void doSthInDB1And2InOneTransactionWithException(int id1,int id2) throws Exception{
+		db1.doSql(id1);
+		db2.doSql(id2);	
+		//will throw an exception to roll back the change in both two data sources (db1 and db2)
+		if(true){
+			throw new RuntimeException();
+		}
 	}
 	
 	

@@ -12,8 +12,10 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.peter.atomikos.Order;
+
 @Service
-public class MixService {
+public class MixedService {
 
 	@Autowired
 	@Qualifier("sendJms")
@@ -33,7 +35,7 @@ public class MixService {
 	}
 
 	public void send(int id) {
-		sendJms.convertAndSend(new OrderInMixed(id));
+		sendJms.convertAndSend(new Order(id));
 	}
 	
 	public List<Map<String, Object>> search(int id){
@@ -42,6 +44,14 @@ public class MixService {
 	
 	@Transactional(rollbackFor = Exception.class)
 	public void doMixed(int id1,int id2) {
+		send(id1);
+		doSql(id1);
+		send(id2);
+		doSql(id2);
+	}
+	
+	@Transactional(rollbackFor = Exception.class)
+	public void doMixedWithException(int id1,int id2) {
 		send(id1);
 		doSql(id1);
 		send(id2);

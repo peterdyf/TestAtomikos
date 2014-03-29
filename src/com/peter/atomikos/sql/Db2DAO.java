@@ -25,9 +25,6 @@ public class Db2DAO{
 		
 		String sql=String.format("insert into USER_ORDER(ID) values(%s)",id);
 		jdbcTemplate.execute(sql);
-		if (true) {
-			throw new RuntimeException();
-		}
 	}
 	
 	public List<Map<String, Object>> search(int id){

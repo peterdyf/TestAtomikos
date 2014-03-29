@@ -24,9 +24,6 @@ public class HibernateInDb2{
 		UserOrder p=new UserOrder();
 		p.setId(id);
 		getSession().save(p);
-		if(true){
-			throw new RuntimeException();
-		}
 	}
 	
 	

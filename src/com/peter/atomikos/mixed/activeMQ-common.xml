@@ -17,7 +17,7 @@
     </bean>
            
     <oxm:jaxb2-marshaller id="marshaller">
-        <oxm:class-to-be-bound name="com.peter.atomikos.mixed.OrderInMixed"/>
+        <oxm:class-to-be-bound name="com.peter.atomikos.Order"/>
     </oxm:jaxb2-marshaller>
     
 
